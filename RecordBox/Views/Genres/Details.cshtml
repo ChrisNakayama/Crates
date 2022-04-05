@@ -1,0 +1,33 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecordBox.Models.Genre
+
+<h2>Genre Details</h2>
+
+<p><strong>@Html.DisplayNameFor(model => model.Name): </strong>@Html.DisplayFor(model => model.Name)</p>
+
+@if (@Model.JoinEntities.Count == 0)
+{
+  <p>This genre doesnt have any records associated to it.</p>
+}
+else
+{
+  <h4>Records this genre is associated to:</h4>
+  <ul>
+    @foreach (var join in Model.JoinEntities)
+    {
+      <li>@Html.ActionLink($"{join.Record.Name}", "Details", "Records", new { id = join.Record.RecordId})</li>
+      @using (Html.BeginForm("DeleteRecord", "Genres"))
+      {
+        @Html.Hidden("joinId", @join.RecordGenreId)
+        <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+      }
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Edit genre", "Edit", new { id = Model.GenreId})</p>
+<p>@Html.ActionLink("Add to record", "AddRecord", new { id = Model.GenreId})</p>
+<p>@Html.ActionLink("Delete genre", "Delete", new { id = Model.GenreId})</p>

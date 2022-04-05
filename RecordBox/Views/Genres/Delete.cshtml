@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecordBox.Models.Genre
+
+<h2>Delete Genre</h2>
+
+<p><strong>Delete</strong> @Html.DisplayFor(model => model.Name)</p>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.GenreId)
+  <input type="submit" value="Delete" class="btn btn-danger" />
+}

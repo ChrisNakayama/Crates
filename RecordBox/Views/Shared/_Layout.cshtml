@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/styles.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Record Box</h1>
+      <ul class="nav row">
+        <li class="nav-item">
+          @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link"})
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Records", "Index", "Records", null, new { @class = "nav-link"})
+        </li>
+        <li class="nav-item">
+          @Html.ActionLink("Genres", "Index", "Genres", null, new { @class = "nav-link"})
+        </li>
+        <li class="nav-item">
+          @if (User.Identity.IsAuthenticated)
+          {
+            @Html.ActionLink($"{User.Identity.Name}", "Index", "Account", null, new { @class = "nav-link"});
+          }
+          else
+          {
+            @Html.ActionLink("Account", "Index", "Account", null, new { @class = "nav-link"});
+          }
+        </li>
+      </ul>
+      <hr>
+      @RenderBody()
+    </div>
+  </body>
+</html>

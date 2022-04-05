@@ -1,0 +1,24 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecordBox.Models
+@model List<RecordBox.Models.Genre>
+
+<h2>Genres</h2>
+
+@if(Model.Count == 0)
+{
+  <p>No genres have been added to the system yet.</p>
+}
+else
+{
+  <ul>
+    @foreach (Genre genre in Model)
+    {
+      <li>@Html.ActionLink($"{genre.Name}", "Details", new { id = genre.GenreId})</li>
+    }
+  </ul>
+}
+
+<p>@Html.ActionLink("Add a genre", "Create", "Genres")</p>

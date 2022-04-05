@@ -1,0 +1,32 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecordBox.Models
+@model IEnumerable<RecordBox.Models.Record>
+
+<h2>Records for @User.Identity.Name</h2>
+
+@if (Model.Any())
+{
+  <div class="row row-cols-1 row-cols-md-2 g-3">
+    @foreach(Record record in Model)
+    {
+      <div class="col">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">@Html.ActionLink($"{record.Name}", "Details", new { id = record.RecordId})</h5>
+            <hr>
+            <p class="card-text">@record.Instructions</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
+else
+{
+  <p>No records added yet.</p>
+}
+
+<p>@Html.ActionLink("Add record", "Create")</p>

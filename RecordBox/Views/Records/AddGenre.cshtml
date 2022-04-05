@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecordBox.Models.Record
+
+<h2>Add a Genre</h2>
+
+<h4>Add a genre to this record: @Html.DisplayFor(model => model.Name)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RecordId)
+  
+  <div class="mb-3">
+    @Html.Label("Select genre")
+    @Html.DropDownList("GenreId", ViewBag.GenreId, "Add Genre", new { @class = "form-control"})
+  </div>
+
+  <input type="submit" value="Save" class="btn btn-success" />
+}
